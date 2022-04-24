@@ -22,7 +22,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=example
     volumes:
-      dabase: /var/lib/mysql
+      - database:/var/lib/mysql
     networks: 
       - my-network
     
