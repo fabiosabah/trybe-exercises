@@ -1,0 +1,30 @@
+2.
+  docker run -d --name site-trybe -p 4545:80 -v  "/home/fsp/Trybe/trybe-exercises/back-end/bloco-19-docker/dia-3-orquestrando-containers-com-docker-compose/:/usr/local/apache2/htdocs/" httpd:2.4
+
+5.
+  docker container ls -a
+
+6. 
+  docker container inspect 72
+  "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/fsp/Trybe/trybe-exercises/back-end/bloco-19-docker/dia-3-orquestrando-containers-com-docker-compose",
+                "Destination": "/usr/local/apache2/htdocs",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+
+7.
+  docker container stop 72
+
+8.
+  docker container rm 72
+
+10.
+ docker image ls
+
+11.
+  docker image rm 118b6abfbf55
