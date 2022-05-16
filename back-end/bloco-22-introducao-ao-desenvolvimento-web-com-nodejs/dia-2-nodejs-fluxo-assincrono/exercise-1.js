@@ -5,7 +5,7 @@
 // Caso o resultado seja maior que 50, resolva a Promise com o valor obtido.
 
 
-function main (param1, param2, param3) {
+ const main = (param1, param2, param3) => {
   return new Promise((resolve, reject) => {
     if( typeof param1 !== 'number' ||
       typeof param2 !== 'number' || typeof param3 != 'number') {
@@ -22,6 +22,4 @@ function main (param1, param2, param3) {
 
 }
 
-main(3, 0, 5)
-  .then((data) => console.log(data))
-  .catch((e) => console.log(`Erro: ${e.message}`))
+module.exports = main;
