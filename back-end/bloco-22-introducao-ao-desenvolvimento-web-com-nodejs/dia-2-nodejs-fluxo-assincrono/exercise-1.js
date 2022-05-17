@@ -13,13 +13,12 @@
         
       }
     const result = (param1 + param2) * param3;
-    
-    if(result < 50) reject(new Error('Valor muito baixo'))
-
+    if(result < 50) reject(new Error('Erro: Valor muito baixo'))
     resolve(result);
-
     })  
 
 }
 
-module.exports = main;
+
+
+module.exports = { main };
