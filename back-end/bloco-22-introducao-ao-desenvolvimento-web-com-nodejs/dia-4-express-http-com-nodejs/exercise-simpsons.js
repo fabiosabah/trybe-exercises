@@ -13,8 +13,24 @@ app.get('/simpsons', async(req, res) => {
   }
 })
 
-app.all('*', (_req, res) => {
-  res.status(500).send('Internal Server Error');
+app.get('/simpsons/:id', async(req, res) => {
+  const { id } = req.params;
+  try {
+    const simpsons = await getSimpsons();
+    console.log(simpsons)
+    const character= simpsons.find((c) => parseInt(c.id) === parseInt(id));
+    
+    if (!character) return res.status(404).json({ message: 'Character not found'});
+
+    res.status(200).json(character);
+
+  } catch (error) {
+    res.status(500).send('Internal Server Error');
+  }
+})
+
+app.all('*', (req, res) => {
+  res.status(404).json({message: `Route '${req.path}' not found`});
 } )
 
 app.listen(3001, () => {
