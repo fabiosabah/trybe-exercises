@@ -7,7 +7,7 @@ function getSimpsons () {
 }
 
 function setSimpsons(content) { 
-  return fs.writeFile(FILE_NAME, JSON.stringify(content))
+  return fs.writeFile(FILE_NAME, JSON.stringify(content, null, 1))
 }
 
 
