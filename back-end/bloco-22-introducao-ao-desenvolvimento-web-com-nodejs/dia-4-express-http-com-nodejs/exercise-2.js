@@ -5,9 +5,9 @@ const app = express();
 app.use(bodyParser.json());
 
 app.post('/hello', (req, res) => {
-  const { user } = req.body;
+  const { name } = req.body;
   
-  res.status(201).json({message: `Hello, ${user}!`});
+  res.status(201).json({message: `Hello, ${name}!`});
 })
 
 app.listen(3001, ()=> {
