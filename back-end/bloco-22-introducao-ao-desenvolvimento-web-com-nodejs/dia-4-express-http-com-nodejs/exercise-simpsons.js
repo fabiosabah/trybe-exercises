@@ -3,8 +3,23 @@ const app = express();
 const { getSimpsons, setSimpsons, authValidation, generateToken} = require('./utils');
 
 app.use(express.json());
-app.use(authValidation);
 
+
+
+app.post('/signup', (req, res) => {
+  const { email, password, firstName, phone } = req.body;
+  
+  if (!email || !password || !firstName || !phone ) {
+    return res.status(401).json({messsage: 'missing fields'})
+  }
+
+  const token = generateToken();
+  res.status(200).json({ token });
+
+})
+
+
+app.use(authValidation);
 
 app.get('/simpsons', async(req, res) => {
   const token = req.headers.authorization;
