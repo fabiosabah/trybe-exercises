@@ -1,13 +1,15 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
-const { getSimpsons, setSimpsons} = require('./fs-utils');
-const { fstat } = require('fs');
+const { getSimpsons, setSimpsons, authValidation, generateToken} = require('./utils');
 
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(authValidation);
 
 
 app.get('/simpsons', async(req, res) => {
+  const token = req.headers.authorization;
+  if (token.length !== 16) return res.status(401).json({message: 'Invalid Token!'})
+
   try {
     const content = await getSimpsons();
     return res.status(200).json(content);
@@ -41,7 +43,6 @@ app.get('/simpsons/:id', async(req, res) => {
   const { id } = req.params;
   try {
     const simpsons = await getSimpsons();
-    console.log(simpsons)
     const character= simpsons.find((c) => parseInt(c.id) === parseInt(id));
     
     if (!character) return res.status(404).json({ message: 'Character not found'});

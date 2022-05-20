@@ -11,4 +11,4 @@ function setSimpsons(content) {
 }
 
 
-module.exports = { getSimpsons, setSimpsons};
+module.exports = { getSimpsons, setSimpsons };
