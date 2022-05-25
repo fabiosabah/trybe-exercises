@@ -5,6 +5,12 @@ const getAll = async () => {
   return row;
 }
 
+const getById = async (id) => {
+  const [rows] = await connection.execute('SELECT * FROM users WHERE id =?', [id])
+  if(rows.length === 0) return null;
+  return rows
+}
+
 
 const create = async (firstName, lastName, email, password) => {
   const [row]  = await  connection.execute(
@@ -26,4 +32,5 @@ const create = async (firstName, lastName, email, password) => {
 module.exports = {
   create,
   getAll,
+  getById,
 }
