@@ -3,8 +3,22 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-const usersMiddleware = require('./middlewares/validation/users.middleware');
 const User = require('./model/Users')
+
+app.get('/user', async (_req, res) => {
+  try{
+    const result = await User.getAll();
+    console.log(result)
+    res.status(200).json(result);
+  } catch(e) {
+    console.log(e);
+    res.status(500).json({message: e.message});
+  }
+  
+})
+
+
+const usersMiddleware = require('./middlewares/validation/users.middleware');
 
 app.post('/user',usersMiddleware, async (req, res) => {
   const {firstName, lastName, email, password} = req.body;
